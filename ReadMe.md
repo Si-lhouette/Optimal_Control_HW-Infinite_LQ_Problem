@@ -1,10 +1,8 @@
-## 第十周作业
+## 细杆点温度最优控制 - LQ无限时长跟踪问题
 
-高钰满，3170105242
+### 问题描述
 
-### 题目描述
-
-热方程：
+现有一长$L$的细杆，热方程如下：
 $$
 \left\{
 \begin{array}{**lr**}
@@ -19,7 +17,29 @@ T(x,0)=\Phi(x)\\
 \right.
 $$
 
+希望通过$0.8L $处的点温度控制，使$L/2$处温度能够跟踪期望温度：$y_r(t)=sin(t)$.
 
+即在热方程上加入控制项：
+$$
+\left\{
+\begin{array}{**lr**}
+
+\frac{\partial T}{\partial t}=\frac{\partial }{\partial x}\cdot (a^2\cdot \frac{\partial T}{\partial x})+g(x)u(t)&0\lt x\lt L,t\gt 0\\
+
+T(x,0)=\Phi(x)\\
+
+\frac{\partial T}{\partial x}|_{x=0}=\frac{\partial T}{\partial x}|_{x=L}=0
+
+\end{array}
+\right.
+$$
+$g(x)=\delta(x-0.8L)$，求最优的$u(t)$使$L/2$处温度温度$=y_r(t)=sin(t)$.
+
+
+
+### 题目要求
+
+首先求解不加控制项的**齐次热方程**：
 
 1. 现已知$a=1$，初始条件$\Phi(x)=sin\frac{\pi x}{L}$，将上述热方程展开前10项：$T(x,t)=\sum\limits_{0}^{10}X_n(x)T_n(t)$;
 
@@ -27,11 +47,15 @@ $$
 
    
 
-2. 用MATLAB函数`pdepe`求解热方程，将结果与第一问对比
+2. 用MATLAB函数`pdepe`求解热方程
 
    
 
-3. LQ无限时长跟踪问题：将上述热方程展开前5项作为近似，将温度作为输出量$y(t)=T(L,t)$，自选$y_r(t)$作为跟踪目标，设计反馈控制。
+再求解**加入控制项后的热方程的最优控制**：
+
+3. **LQ无限时长跟踪问题**：
+
+   将上述热方程展开前5项作为近似，将$L/2$处温度温度作为输出量$y(t)=T(L/2,t)$，希望通过$0.8L $处的点温度控制，使$y(t)=y_r(t)=sin(t)$.
 
 
 
@@ -112,7 +136,7 @@ $$
 
 按照题目要求取$T(x,t)$的前10项作为其近似，画出$(T,x,t)$三维的温度分布：
 
-<img src="./ex1.jpg" style="zoom:43%">
+<img src="./Img/ex1.jpg" style="zoom:43%">
 
 
 
@@ -154,7 +178,7 @@ p(x, t, u)+q(x, t) f\left(x, t, u, \frac{\partial u}{\partial x}\right)=0
 $$
 求解图像如下：
 
-<img src="./ex2.jpg" style="zoom:43%">
+<img src="./Img/ex2.jpg" style="zoom:43%">
 
 
 
@@ -176,7 +200,7 @@ T(x,0)=\Phi(x)\\
 $$
 其中，选择$g(x)=\delta(x-0.8L)$，此处的冲激函数表示的意义是**点温度控制**，通过在$0.8L$处的热源控制目标点温度.
 
-期望控制$L/2$处的温度为$y_r(t)=sin(x)$.
+期望控制$L/2$处的温度为$y_r(t)=sin(t) $.
 
 
 
@@ -277,10 +301,10 @@ $$
 
 $L/2$处温度：
 
-<img src="./ex3T.jpg" style="zoom:43%">
+<img src="./Img/ex3T.jpg" style="zoom:43%">
 
 $0.8L $处的点温度控制：
 
-<img src="./ex3u.jpg" style="zoom:43%">
+<img src="./Img/ex3u.jpg" style="zoom:43%">
 
-至此，实现了通过$0.8L $处的点温度控制，使$L/2$处温度能够跟踪期望温度：$y_r(t)=sin(x)$.
+至此，实现了通过$0.8L $处的点温度控制，使$L/2$处温度能够跟踪期望温度：$y_r(t)=sin(t)$.
