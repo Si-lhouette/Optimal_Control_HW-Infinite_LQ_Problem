@@ -3,14 +3,12 @@
 详细文档详见`Doc.pdf`
 
 ### 问题描述
-
-<img src="./Img/r1.png">
-
+<img src="./Img/r1.png" width="750">
 
 
 ### 题目要求
 
-<img src="./Img/r2.png">
+<img src="./Img/r2.png"  width="750">
 
 
 
@@ -18,6 +16,6 @@
 
   未加入控制项的热方程齐次解：
 
-<img src="./Img/r3.png">
+<img src="./Img/r3.png"  width="750">
 
-<img src="./Img/r4.png">
+<img src="./Img/r4.png"  width="750">
